@@ -1,5 +1,6 @@
 package ContactsManager;
 
+import java.util.Scanner;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,8 +13,9 @@ import java.util.List;
 public class Manager {
 
     public static void main(String[] args) {
-        String directory = "data";
+        // Menu
 
+        String directory = "data";
         Path folder = Paths.get(directory);
         Path file = Paths.get(directory, "info.txt");
 
@@ -34,9 +36,9 @@ public class Manager {
                 e.printStackTrace();
             }
         }
-//        else{
-//            System.out.println(file + " file already exists");
-//        }
+        else{
+            System.out.println(file + " file already exists");
+        }
 
 //        List<String> names = Arrays.asList("Fer 29", "Daniel 35", "Justin 35", "Sophie 26", "David 26");
 //
@@ -45,20 +47,18 @@ public class Manager {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
+//
         List<String> updatedList = new ArrayList<>();
 
         try {
             List<String> namesFromFile = Files.readAllLines(file);
             for (String line: namesFromFile) {
-//                if(name.equalsIgnoreCase("fer")){
-//                    System.out.println("That's me");
-//                }
+
                 String name = line.split(" ")[0];
                 int age = Integer.parseInt(line.split(" ")[1]);
 
-                System.out.println("name = " + name);
-                System.out.println("age = " + age);
+                System.out.println("name " + " | " + "Number");
+                System.out.println(name + " | " + age);
 
                 if(name.equalsIgnoreCase("ryan")){
                     updatedList.add(name + " " + 35);
@@ -76,12 +76,12 @@ public class Manager {
         }
 
 
-//        try {
-//            Files.write(file, Arrays.asList("Ryan " + 40), StandardOpenOption.APPEND);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Files.write(file, Arrays.asList("Ryan " + 40), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
-
 }
