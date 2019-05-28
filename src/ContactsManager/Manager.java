@@ -39,13 +39,6 @@ public class Manager {
             System.out.println(dataFile + " file already exists");
         }
 
-//        List<String> names = Arrays.asList("Fer 29", "Daniel 35", "Justin 35", "Sophie 26", "David 26");
-//
-//        try {
-//            Files.write(file, names);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         //
         List<String> updatedList = new ArrayList<>();
