@@ -5,6 +5,7 @@ import java.nio.file.*;
 import java.io.IOException;
 
 public class Manager {
+
     static String directory = "data";
     static Path dataFolder = Paths.get(directory);
     static Path dataFile = Paths.get(directory, "contact.txt");
@@ -14,8 +15,6 @@ public class Manager {
     public static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-
 
 
         // Append New Contact
@@ -57,17 +56,16 @@ public class Manager {
     ////// End of Main ///////
 
 
-    //CLI
     public static void userChoice() {
 
         System.out.println("Welcome to Contacts Manager!");
 
         System.out.println(
-                " 1. View contacts.\n" +
-                        "        2. Add a new contact.\n" +
-                        "        3. Search a contact by name.\n" +
-                        "        4. Delete an existing contact.\n" +
-                        "        5. Exit." +
+                        " 1. View contacts.\n" +
+                        " 2. Add a new contact.\n" +
+                        " 3. Search a contact by name.\n" +
+                        " 4. Delete an existing contact.\n" +
+                        " 5. Exit." +
                         " Enter an option (1, 2, 3, 4 or 5): "
         );
 
@@ -77,22 +75,27 @@ public class Manager {
 
             case (1): {
                 displayContacts();
+                userChoice();
+                break;
             }
             case (2): {
                 addContact();
+                userChoice();
                 break;
             }
             case (3): {
-                contactByName("name");
+                contactByName();
+                userChoice();
                 break;
             }
             case (4): {
-                System.out.println("Enter the name.");
-                String name = scan.nextLine();
-                deleteContact("name");
+                deleteContact();
+                userChoice();
+                break;
             }
             case (5): {
-                System.out.println("Exiting application...");
+                goodBye();
+                break;
 
             }
             default: {
@@ -104,7 +107,7 @@ public class Manager {
 
     String userChoice = scan.nextLine();
 
-    public static void folderFile(){
+    public static void folderFile() {
         // Creating a folder, check first if folder exist continue
         if (Files.notExists(dataFolder)) {
             try {
@@ -129,19 +132,21 @@ public class Manager {
     }
 
     // Display Contacts
-    public static ArrayList<Contact> displayContacts() {
+    public static void displayContacts() {
 
-        ArrayList<Contact> contacts = new ArrayList<>();
+        List<String> contactList = new ArrayList<>();
 
         try {
-            List<String> FullContactsList = Files.readAllLines(dataFile);
-            for (int i = 0; i < FullContactsList.size(); i++) {
-                System.out.println(FullContactsList);
+            List<String> fullContactList = Files.readAllLines(dataFile);
+            System.out.println("|--------Contacts------------|");
+            System.out.println("|----------------------------|");
+            for (String contact : fullContactList) {
+                System.out.println("| " + contact + "  |");
             }
-        } catch (Exception e) {
-            System.out.println("FullContactsList Exception: " + e);
+            System.out.println("|----------------------------|");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return contacts;
     }
 
 
@@ -161,12 +166,45 @@ public class Manager {
     }
 
     // Search contact by name
-    public static void contactByName(String name) {
-
+    public static void contactByName() {
+        List<Contact> searchedContact = new ArrayList<>();
+        // Add additional logic to check contact.txt
+        Scanner searchName = new Scanner(System.in);
+        System.out.println("Search by first name: ");
+        String searchFirstName = searchName.next();
+        try {
+            List<String> SearchList = Files.readAllLines(dataFile);
+            for (int i = 0; i < SearchList.size(); i++) {
+                if (SearchList.contains(searchFirstName)) {
+                    System.out.println(SearchList + "found");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("FullContactsList Exception: " + e);
+        }
     }
 
     //delete Contact
-    public static void deleteContact(String name) {
+    public static void deleteContact() {
+        List<String> contactList = new ArrayList<>();
+        Scanner deleteName = new Scanner(System.in);
+        System.out.println("Delete User from list: ");
+        String contactDel = deleteName.nextLine();
 
+        try {
+            List<String> fullContactList = Files.readAllLines(dataFile);
+            for (String contact : fullContactList) {
+                System.out.println(contact);
+
+                if (contact.equalsIgnoreCase(contactDel))
+                    fullContactList.remove(contactDel);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void goodBye() {
+        System.out.println("Exiting...");
     }
 }
