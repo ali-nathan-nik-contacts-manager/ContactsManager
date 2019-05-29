@@ -17,7 +17,7 @@ public class Manager {
 
         String directory = "data";
         Path folder = Paths.get(directory);
-        Path file = Paths.get(directory, "contact.txt");
+        Path file = Paths.get(directory, "info.txt");
 
         if(Files.notExists(folder)){
             try {
