@@ -15,41 +15,6 @@ public class Manager {
     public static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-
-        // Append New Contact
-//        List<String> updatedList = new ArrayList<>();
-//
-//        try {
-//            List<String> namesFromFile = Files.readAllLines(dataFile);
-//
-//            for (String line : namesFromFile) {
-//
-//                String name = line.split(" ")[0];
-//                int PhoneNumber = Integer.parseInt(line.split(" ")[0]);
-//
-//                System.out.println("Name " + " | " + "Number");
-//                System.out.println(name + " | " + PhoneNumber);
-//
-//                if (name.equalsIgnoreCase("ryan")) {
-//                    updatedList.add(name + " " + 35);
-//                    continue;
-//                }
-//
-//                updatedList.add(line);
-//            }
-//
-//            Files.write(dataFile, updatedList);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            Files.write(dataFile, Arrays.asList(addContact()), StandardOpenOption.APPEND);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         userChoice();
     }
 
@@ -61,7 +26,7 @@ public class Manager {
         System.out.println("Welcome to Contacts Manager!");
 
         System.out.println(
-                        " 1. View contacts.\n" +
+                " 1. View contacts.\n" +
                         " 2. Add a new contact.\n" +
                         " 3. Search a contact by name.\n" +
                         " 4. Delete an existing contact.\n" +
