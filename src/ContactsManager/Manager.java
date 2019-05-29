@@ -142,10 +142,11 @@ public class Manager {
         try {
             List<String> SearchList = Files.readAllLines(dataFile);
             // Loop through the data file contact.txt
+            System.out.println("|----------------------------|");
+            System.out.println("|          Results           |");
+            System.out.println("|----------------------------|");
             for (String contact : SearchList) {
                 if(contact.contains(searchFirstName)) {
-
-//                  int phoneNumber = Integer.parseInt(contact.split(" ")[1]);
                     System.out.println("Contact: " + contact);
                 }
             }
