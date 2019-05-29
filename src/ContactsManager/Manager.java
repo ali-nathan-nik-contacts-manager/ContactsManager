@@ -163,10 +163,11 @@ public class Manager {
     // Search contact by name
     public static void contactByName(String name) {
 
+
     }
 
     //delete Contact
-    public static void deleteContact(String name) {
+    public static void deleteContact( String name) {
 
     }
 }
