@@ -168,6 +168,6 @@ public class Manager {
 
     //delete Contact
     public static void deleteContact( String name) {
-
+        System.out.println(name);
     }
 }
