@@ -12,13 +12,11 @@ public class Manager {
     public static Scanner scan = new Scanner(System.in);
 
     /////////// M A I N /////////////
-
     public static void main(String[] args) {
         userChoice();
     }
 
     ////// E N D OF M A I N ///////
-
     public static void userChoice() {
 
         System.out.println("----------Main Menu-----------");
@@ -31,7 +29,6 @@ public class Manager {
                         "  "
         );
         System.out.println("-----------------------------");
-
 
         int choice = scan.nextInt();
         switch (choice) {
@@ -93,11 +90,8 @@ public class Manager {
         }
     }
 
-    // Display Contacts
+    /////////////// D I S P L A Y ///////////////
     public static void displayContacts() {
-
-        List<String> contactList = new ArrayList<>();
-
         try {
             List<String> fullContactList = Files.readAllLines(dataFile);
             System.out.println("|----------------------------|");
@@ -112,14 +106,12 @@ public class Manager {
         }
     }
 
-
-    //Get Data from User to Append to contact
+    ///////////// A D D  C O N T A C T ///////////
     public static void addContact() {
         Scanner choice = new Scanner(System.in);
         System.out.println("Enter contact name & number: ");
         System.out.println("Ex. First Name Last Name | 555.5555");
         String contact = choice.nextLine();
-
         try {
             Files.write(dataFile, Arrays.asList(contact), StandardOpenOption.APPEND);
         } catch (IOException e) {
@@ -128,7 +120,7 @@ public class Manager {
         userChoice();
     }
 
-    // Search contact by name
+    //////////// S E A R C H ////////////
     public static void contactByName() {
         List<Contact> searchedContact = new ArrayList<>();
         // Initiate scanner
@@ -153,9 +145,9 @@ public class Manager {
         }
     }
 
-    //Delete Contact
+    //////// D E L E T E ///////////////
     public static void deleteContact() {
-        List<String> contactList = new ArrayList<>();
+//        List<String> contactList = new ArrayList<>();
         Scanner deleteName = new Scanner(System.in);
         System.out.println("Delete User from list: ");
         String contactDel = deleteName.nextLine();
@@ -164,10 +156,11 @@ public class Manager {
             List<String> fullContactList = Files.readAllLines(dataFile);
 
             for (String contact : fullContactList) {
-                System.out.println(contact);
                 if (contact.equalsIgnoreCase(contactDel))
                     fullContactList.remove(contactDel);
+                Files.write(dataFile, Arrays.asList(contact));
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
