@@ -9,10 +9,9 @@ public class Manager {
     static String directory = "data";
     static Path dataFolder = Paths.get(directory);
     static Path dataFile = Paths.get(directory, "contact.txt");
+    public static Scanner scan = new Scanner(System.in);
 
     /////////// M A I N /////////////
-
-    public static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
         userChoice();
@@ -22,9 +21,9 @@ public class Manager {
 
     public static void userChoice() {
 
-        System.out.println("----------Choose------------");
+        System.out.println("----------Main Menu-----------");
         System.out.println(
-                        " 1. View contacts.\n" +
+                " 1. View contacts.\n" +
                         " 2. Add a new contact.\n" +
                         " 3. Search a contact by name.\n" +
                         " 4. Delete an existing contact.\n" +
@@ -35,7 +34,6 @@ public class Manager {
 
 
         int choice = scan.nextInt();
-
         switch (choice) {
 
             case (1): {
@@ -64,14 +62,13 @@ public class Manager {
 
             }
             default: {
-                System.out.println("Please enter a valid number of choice.");
+                System.out.println("Please enter a valid number (1 - 5) .");
                 userChoice();
             }
         }
     }
 
     String userChoice = scan.nextLine();
-
     public static void folderFile() {
         // Creating a folder, check first if folder exist continue
         if (Files.notExists(dataFolder)) {
@@ -146,7 +143,7 @@ public class Manager {
             System.out.println("|          Results           |");
             System.out.println("|----------------------------|");
             for (String contact : SearchList) {
-                if(contact.contains(searchFirstName)) {
+                if (contact.contains(searchFirstName)) {
                     System.out.println("Contact: " + contact);
                 }
             }
@@ -165,6 +162,7 @@ public class Manager {
 
         try {
             List<String> fullContactList = Files.readAllLines(dataFile);
+
             for (String contact : fullContactList) {
                 System.out.println(contact);
                 if (contact.equalsIgnoreCase(contactDel))
@@ -176,6 +174,6 @@ public class Manager {
     }
 
     public static void goodBye() {
-        System.out.println("Exiting...");
+        System.out.println("Exiting...thank you for using Contacts Manager+");
     }
 }
