@@ -21,11 +21,11 @@ public class Manager {
 
         System.out.println("----------Main Menu-----------");
         System.out.println(
-                " 1. View contacts.\n" +
-                        " 2. Add a new contact.\n" +
-                        " 3. Search a contact by name.\n" +
-                        " 4. Delete an existing contact.\n" +
-                        " 5. Exit." +
+                " 1. View contacts \n" +
+                        " 2. Add a new contact \n" +
+                        " 3. Search a contact \n" +
+                        " 4. Delete an existing contact \n" +
+                        " 5. Exit" +
                         "  "
         );
         System.out.println("-----------------------------");
@@ -66,6 +66,7 @@ public class Manager {
     }
 
     String userChoice = scan.nextLine();
+
     public static void folderFile() {
         // Creating a folder, check first if folder exist continue
         if (Files.notExists(dataFolder)) {
@@ -110,7 +111,7 @@ public class Manager {
     public static void addContact() {
         Scanner choice = new Scanner(System.in);
         System.out.println("Enter contact name & number: ");
-        System.out.println("Ex. First Name Last Name | 555.5555");
+        System.out.println("Ex. First Name Last Name | 555.55515");
         String contact = choice.nextLine();
         try {
             Files.write(dataFile, Arrays.asList(contact), StandardOpenOption.APPEND);
@@ -145,22 +146,18 @@ public class Manager {
         }
     }
 
-    //////// D E L E T E ///////////////
+    //////// D E L E T E /////////
     public static void deleteContact() {
-//        List<String> contactList = new ArrayList<>();
         Scanner deleteName = new Scanner(System.in);
         System.out.println("Delete User from list: ");
-        String contactDel = deleteName.nextLine();
+        String contactToDelete = deleteName.nextLine();
 
         try {
             List<String> fullContactList = Files.readAllLines(dataFile);
-
             for (String contact : fullContactList) {
-                if (contact.equalsIgnoreCase(contactDel))
-                    fullContactList.remove(contactDel);
-                Files.write(dataFile, Arrays.asList(contact));
+                if (contact.equalsIgnoreCase(contactToDelete))
+                    fullContactList.remove(contactToDelete);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
